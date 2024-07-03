@@ -55,4 +55,12 @@ public class ArticleService {
     }
 
 
+    public void deleteArtice(long articleId) throws Exception {
+
+        Article findArticle= findVerifiedArticle(articleId); //유효한 댓글인지 검증
+        articleRepository.delete(findArticle);
+    }
+
+
+
 }

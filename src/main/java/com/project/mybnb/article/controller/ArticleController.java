@@ -48,4 +48,14 @@ public class ArticleController {
 
         return new ResponseEntity (articleMapper.updateToResposnseDto(article),HttpStatus.OK);
     }
+
+    @DeleteMapping("/{article-id}")
+    public ResponseEntity deleteArticle( @PathVariable("article-id") long article_id) throws Exception{
+
+        articleService.deleteArtice(article_id);
+
+        return  new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+
 }
