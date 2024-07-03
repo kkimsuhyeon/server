@@ -1,0 +1,19 @@
+spring:
+  application.name: mybnb
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/mybnb
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  h2.console.enabled: true
+
+logging.level.org.hibernate.orm.jdbc.bind: trace
