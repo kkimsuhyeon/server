@@ -6,3 +6,10 @@ spring:
     url: jdbc:mysql://localhost:3306/mybnb?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
