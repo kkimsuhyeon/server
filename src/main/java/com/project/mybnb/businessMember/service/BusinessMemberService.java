@@ -4,6 +4,7 @@ import com.project.mybnb.businessMember.domain.BusinessMember;
 import com.project.mybnb.businessMember.dto.BusinessMemberDto;
 import com.project.mybnb.businessMember.exception.BusinessMemberException;
 import com.project.mybnb.businessMember.repository.BusinessMemberRepository;
+import com.project.mybnb.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,8 @@ public class BusinessMemberService {
             throw new BusinessMemberException("BSM002", "비밀번호가 틀렸습니다");
         }
 
-        return "token";
+        String token = TokenProvider.createToken(member.getId());
+        return token;
     }
 
     @Transactional
