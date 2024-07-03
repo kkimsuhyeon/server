@@ -13,7 +13,6 @@ public class ArticleResponseDto {
     private String category;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-    private LocalDateTime modified_at;
     private String location;
 
 }
