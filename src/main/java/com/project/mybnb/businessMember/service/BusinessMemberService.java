@@ -20,6 +20,17 @@ public class BusinessMemberService {
         this.repository = repository;
     }
 
+    public String signinBusinessMember(BusinessMemberDto dto) {
+        BusinessMember member = repository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("해당 이메일을 가진 유저가 존재하지 않습니다."));
+
+        if (!member.getPassword().equals(dto.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다");
+        }
+
+        return "token";
+    }
+
     @Transactional
     public void saveBusinessMember(BusinessMemberDto dto) {
         if (repository.findByEmail(dto.getEmail()).isPresent()) {
@@ -27,7 +38,6 @@ public class BusinessMemberService {
         } else {
             repository.save(dto.toEntity());
         }
-
     }
 
     @Transactional
