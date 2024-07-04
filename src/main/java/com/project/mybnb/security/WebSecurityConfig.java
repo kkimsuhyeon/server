@@ -47,6 +47,7 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable).build();
     }
 
+    // 해시 함수를 이용하여 비밀번호를 암호화해서 저장
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
