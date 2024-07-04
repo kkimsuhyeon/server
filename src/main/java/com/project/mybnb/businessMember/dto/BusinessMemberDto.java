@@ -1,6 +1,7 @@
 package com.project.mybnb.businessMember.dto;
 
 import com.project.mybnb.businessMember.domain.BusinessMember;
+import com.project.mybnb.businessMember.dto.request.RequestBusinessMemberDto;
 import lombok.Getter;
 import lombok.ToString;
 

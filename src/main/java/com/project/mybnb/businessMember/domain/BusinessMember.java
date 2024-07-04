@@ -2,10 +2,6 @@ package com.project.mybnb.businessMember.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -31,4 +27,7 @@ public class BusinessMember extends MemberAuditingFields {
 
     @Setter
     private String companyName;
+
+    @Setter
+    private String refreshToken;
 }

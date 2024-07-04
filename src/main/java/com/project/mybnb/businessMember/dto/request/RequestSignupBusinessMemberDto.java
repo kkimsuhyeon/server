@@ -1,10 +1,10 @@
-package com.project.mybnb.businessMember.dto;
+package com.project.mybnb.businessMember.dto.request;
 
+import com.project.mybnb.businessMember.dto.BusinessMemberDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.ToString;
 
-public record RequestCreateBusinessMemberDto(
+public record RequestSignupBusinessMemberDto(
         @NotNull
         @Email
         String email,

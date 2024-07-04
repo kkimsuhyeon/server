@@ -1,5 +1,6 @@
-package com.project.mybnb.businessMember.dto;
+package com.project.mybnb.businessMember.dto.request;
 
+import com.project.mybnb.businessMember.dto.BusinessMemberDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
