@@ -24,6 +24,7 @@ public class BusinessMemberService {
         this.repository = repository;
     }
 
+    @Transactional
     public Map<String, String> signinBusinessMember(BusinessMemberDto dto) {
         Map<String, String> tokens = new HashMap<>();
 
@@ -73,11 +74,16 @@ public class BusinessMemberService {
     }
 
     @Transactional
-    public String reissueToken(BusinessMemberDto dto) {
+    public String reissueToken(String refreshToken, BusinessMemberDto dto) {
 
-        // todo code
-        // refreshToken이랑 DB에 들어가있는 refreshToken 비교하는 코드 필요함
+        BusinessMember result = repository.findByEmail(dto.getEmail()).orElseThrow(() ->
+                new BusinessMemberException("BSM001", "해당 id를 가진 유저가 존재하지 않습니다"));
 
-        return TokenProvider.createToken(dto.getId(), dto.getEmail(), TokenProvider.ACCESS_TOKEN_EXPIRE_TIME);
+        if (result.getRefreshToken().equals(refreshToken)) {
+            return TokenProvider.createToken(dto.getId(), dto.getEmail(), TokenProvider.ACCESS_TOKEN_EXPIRE_TIME);
+        } else {
+            throw new BusinessMemberException("BSM015", "토큰이 바뀌었습니다??");
+        }
+
     }
 }
