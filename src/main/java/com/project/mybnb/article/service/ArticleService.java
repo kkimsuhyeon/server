@@ -5,6 +5,9 @@ import com.project.mybnb.article.dto.ArticlePatchDto;
 import com.project.mybnb.article.dto.ArticlePostDto;
 import com.project.mybnb.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -62,5 +65,10 @@ public class ArticleService {
     }
 
 
+
+    public Page<Article> getArticleList(int page, int size) {
+        return articleRepository.findAll(PageRequest.of(page, size,
+                Sort.by("createdAt").descending()));
+    }
 
 }

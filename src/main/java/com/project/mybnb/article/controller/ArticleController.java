@@ -7,8 +7,11 @@ import com.project.mybnb.article.dto.ArticleResponseDto;
 import com.project.mybnb.article.mapper.ArticleMapper;
 import com.project.mybnb.article.repository.ArticleRepository;
 import com.project.mybnb.article.service.ArticleService;
+import com.project.mybnb.dto.MultiResponseDto;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -55,6 +60,25 @@ public class ArticleController {
         articleService.deleteArtice(article_id);
 
         return  new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    //숙소 리스트 조회
+    @GetMapping("/{article-id}/list")
+    public ResponseEntity getArticleList( @Valid @PathVariable("article-id")long article_id,
+                                        @Positive @RequestParam("page")int page,
+                                        @Positive @RequestParam("size") int size){
+
+        Page<Article> articlePage= articleService.getArticleList(page-1, size);
+
+        List<Article> articleList= articlePage.getContent();
+
+        return  new ResponseEntity<>(
+                new MultiResponseDto<>(articleMapper.articleToResponesDto(articleList),
+                        articlePage),
+                HttpStatus.OK
+        );
+
+
     }
 
 

@@ -26,10 +26,12 @@ public class Article {
     private String status;
 
     @CreatedDate
-    private LocalDateTime created_at;
+    @Column(nullable = true,name = "created_at")
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updated_at;
+    @Column(nullable = true,name = "updated_at")
+    private LocalDateTime updatedAt;
 
     private String location;
 
