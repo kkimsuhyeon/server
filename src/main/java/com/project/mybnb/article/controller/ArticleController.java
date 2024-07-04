@@ -82,4 +82,15 @@ public class ArticleController {
     }
 
 
+    //숙소 상세조회
+    @GetMapping("/{article-id}")
+    public ResponseEntity getArticle( @PathVariable("article-id") long article_id){
+
+        Article article= articleService.getArticles(article_id);
+
+        return new ResponseEntity(articleMapper.createToResposnseDto(article),HttpStatus.OK);
+    }
+
+
+
 }

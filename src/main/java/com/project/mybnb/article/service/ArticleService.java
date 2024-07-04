@@ -71,4 +71,12 @@ public class ArticleService {
                 Sort.by("createdAt").descending()));
     }
 
+
+    public Article getArticles(long articleId) {
+
+        Article article= articleRepository.findById(articleId).orElse(null);
+
+        return article;
+    }
+
 }
