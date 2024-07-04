@@ -43,8 +43,8 @@ public class SignController {
 
     @Operation(security = {@SecurityRequirement(name = "Authorization")})
     @GetMapping(value = "/refreshToken")
-    public ResponseEntity<?> reissueToken(@AuthenticationPrincipal MemberPrinciple principle) {
-        String token = businessMemberService.reissueToken(principle.toDto());
+    public ResponseEntity<?> reissueToken(@RequestHeader("Authorization") String refreshToken, @AuthenticationPrincipal MemberPrinciple principle) {
+        String token = businessMemberService.reissueToken(refreshToken, principle.toDto());
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }
