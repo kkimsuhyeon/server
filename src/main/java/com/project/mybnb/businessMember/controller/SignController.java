@@ -5,6 +5,8 @@ import com.project.mybnb.businessMember.dto.request.RequestSigninBusinessMemberD
 import com.project.mybnb.businessMember.dto.request.RequestSignupBusinessMemberDto;
 import com.project.mybnb.businessMember.service.BusinessMemberService;
 import com.project.mybnb.security.MemberPrinciple;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,7 @@ public class SignController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Operation(security = {@SecurityRequirement(name = "Authorization")})
     @GetMapping(value = "/refreshToken")
     public ResponseEntity<?> reissueToken(@AuthenticationPrincipal MemberPrinciple principle) {
         String token = businessMemberService.reissueToken(principle.toDto());

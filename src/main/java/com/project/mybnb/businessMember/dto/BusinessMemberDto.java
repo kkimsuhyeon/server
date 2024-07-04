@@ -35,6 +35,7 @@ public class BusinessMemberDto {
     // todo check
     public BusinessMember toEntity() {
         return BusinessMember.builder()
+                .id(id)
                 .email(email)
                 .password(password)
                 .name(name)
