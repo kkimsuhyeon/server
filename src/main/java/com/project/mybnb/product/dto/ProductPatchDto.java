@@ -1,17 +1,13 @@
-package com.project.mybnb.article.dto;
+package com.project.mybnb.product.dto;
 
 import lombok.Data;
 
 @Data
-public class ArticlePostDto {
-
+public class ProductPatchDto {
     private String title;
     private String content;
     private String category;
     private String location;
     private int price;
-
-
-
 
 }

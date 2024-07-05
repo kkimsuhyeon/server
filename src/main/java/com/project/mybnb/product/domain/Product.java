@@ -1,4 +1,4 @@
-package com.project.mybnb.article.domain;
+package com.project.mybnb.product.domain;
 
 import com.project.mybnb.businessMember.domain.BusinessMember;
 import jakarta.persistence.*;
@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class Article {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long article_id;
+    private long product_id;
 
     private String title;
 
