@@ -1,7 +1,11 @@
 package com.project.mybnb.businessMember.domain;
 
+import com.project.mybnb.article.domain.Article;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,4 +34,7 @@ public class BusinessMember extends MemberAuditingFields {
 
     @Setter
     private String refreshToken;
+
+    @OneToMany(mappedBy = "businessMember", cascade = CascadeType.ALL)
+    private List<Article> articles = new ArrayList<>();
 }

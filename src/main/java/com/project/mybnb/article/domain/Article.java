@@ -1,5 +1,6 @@
 package com.project.mybnb.article.domain;
 
+import com.project.mybnb.businessMember.domain.BusinessMember;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,16 +27,18 @@ public class Article {
     private String status;
 
     @CreatedDate
-    @Column(nullable = true,name = "created_at")
+    @Column(nullable = true, name = "created_at")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(nullable = true,name = "updated_at")
+    @Column(nullable = true, name = "updated_at")
     private LocalDateTime updatedAt;
 
     private String location;
 
     private int price;
 
-
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "business_member_id")
+    private BusinessMember businessMember;
 }

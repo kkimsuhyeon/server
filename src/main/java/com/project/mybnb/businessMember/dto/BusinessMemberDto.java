@@ -13,18 +13,21 @@ public class BusinessMemberDto {
     private String email;
     private String password;
     private String name;
+    private String companyName;
 
     public BusinessMemberDto(Builder builder) {
         this.id = builder.id;
         this.email = builder.email;
         this.password = builder.password;
         this.name = builder.name;
+        this.companyName = builder.companyName;
     }
 
     public static BusinessMemberDto fromEntity(BusinessMember entity) {
         return new Builder(entity.getEmail(), entity.getPassword())
                 .id(entity.getId())
                 .name(entity.getName())
+                .companyName(entity.getCompanyName())
                 .build();
     }
 
@@ -32,13 +35,13 @@ public class BusinessMemberDto {
         return request.toDto();
     }
 
-    // todo check
     public BusinessMember toEntity() {
         return BusinessMember.builder()
                 .id(id)
                 .email(email)
                 .password(password)
                 .name(name)
+                .companyName(companyName)
                 .build();
     }
 
@@ -47,6 +50,7 @@ public class BusinessMemberDto {
         private String email;
         private String password;
         private String name;
+        private String companyName;
 
         public Builder(String email, String password) {
             this.email = email;
@@ -60,6 +64,11 @@ public class BusinessMemberDto {
 
         public Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Builder companyName(String companyName) {
+            this.companyName = companyName;
             return this;
         }
 

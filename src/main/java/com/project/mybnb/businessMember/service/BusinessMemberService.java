@@ -2,6 +2,7 @@ package com.project.mybnb.businessMember.service;
 
 import com.project.mybnb.businessMember.domain.BusinessMember;
 import com.project.mybnb.businessMember.dto.BusinessMemberDto;
+import com.project.mybnb.businessMember.dto.BusinessMemberWithArticleDto;
 import com.project.mybnb.businessMember.exception.BusinessMemberException;
 import com.project.mybnb.businessMember.repository.BusinessMemberRepository;
 import com.project.mybnb.security.TokenProvider;
@@ -62,7 +63,7 @@ public class BusinessMemberService {
 
         if (dto.getPassword() != null) result.setPassword(dto.getPassword());
         if (dto.getName() != null) result.setName(dto.getName());
-        if (dto.getPassword() != null) result.setPassword(dto.getPassword());
+        if (dto.getCompanyName() != null) result.setCompanyName(dto.getCompanyName());
     }
 
     @Transactional
@@ -84,6 +85,5 @@ public class BusinessMemberService {
         } else {
             throw new BusinessMemberException("BSM015", "토큰이 바뀌었습니다??");
         }
-
     }
 }
