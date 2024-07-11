@@ -31,6 +31,13 @@ public class ImageDto {
                 .build();
     }
 
+    public static ImageDto fromEntity(Image entity) {
+        return new Builder(entity.getOriginalFileName(), entity.getStoredFileName(), entity.getFilePath())
+                .id(entity.getId())
+                .fileSize(entity.getFileSize())
+                .build();
+    }
+
     public static class Builder {
         private Long id;
         private String originalName;

@@ -18,6 +18,15 @@ public class ImageRepository {
         return Optional.ofNullable(result);
     }
 
+    public Optional<Image> findByStoredName(String name) {
+        String query = "SELECT i FROM Image AS i" +
+                " WHERE i.storedFileName = :name";
+
+        Image result = entityManager.createQuery(query, Image.class).setParameter("name", name).getSingleResult();
+
+        return Optional.ofNullable(result);
+    }
+
     public Image save(Image newImage) {
         entityManager.persist(newImage);
         return newImage;
