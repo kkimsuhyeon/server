@@ -1,6 +1,7 @@
 package com.project.mybnb.security;
 
 import com.project.mybnb.businessMember.dto.BusinessMemberDto;
+import com.project.mybnb.consumer.dto.ConsumerDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,8 +23,12 @@ public record MemberPrinciple(
         return MemberPrinciple.of(dto.getId(), dto.getEmail(), dto.getPassword(), dto.getName(), authorities);
     }
 
-    public BusinessMemberDto toDto() {
+    public BusinessMemberDto toBusinessDto() {
         return new BusinessMemberDto.Builder(email, password).name(name).id(id).build();
+    }
+
+    public ConsumerDto toConsumerDto() {
+        return new ConsumerDto.Builder(email, password).name(name).id(id).build();
     }
 
     @Override

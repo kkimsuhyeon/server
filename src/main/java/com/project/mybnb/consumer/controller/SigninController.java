@@ -1,9 +1,9 @@
-package com.project.mybnb.businessMember.controller;
+package com.project.mybnb.consumer.controller;
 
-import com.project.mybnb.businessMember.dto.BusinessMemberDto;
-import com.project.mybnb.businessMember.dto.request.RequestSigninBusinessMemberDto;
-import com.project.mybnb.businessMember.dto.request.RequestSignupBusinessMemberDto;
-import com.project.mybnb.businessMember.service.BusinessMemberService;
+import com.project.mybnb.consumer.dto.ConsumerDto;
+import com.project.mybnb.consumer.dto.request.RequestSigninConsumerDto;
+import com.project.mybnb.consumer.dto.request.RequestSignupConsumerDto;
+import com.project.mybnb.consumer.service.ConsumerService;
 import com.project.mybnb.security.MemberPrinciple;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -20,31 +20,31 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/business")
-public class SignController {
+@RequestMapping("/api/consumer")
+public class SigninController {
 
-    private final BusinessMemberService businessMemberService;
+    private final ConsumerService consumerService;
 
     @PostMapping(value = "/signin", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public ResponseEntity<?> signinBusinessMember(@ModelAttribute @Valid RequestSigninBusinessMemberDto request) {
+    public ResponseEntity<?> signinConsumer(@ModelAttribute @Valid RequestSigninConsumerDto request) {
         Map<String, Object> result = new HashMap<>();
 
-        Map<String, String> tokens = businessMemberService.signinBusinessMember(BusinessMemberDto.fromRequest(request));
+        Map<String, String> tokens = consumerService.signinConsumer(ConsumerDto.fromRequest(request));
         result.put("data", tokens);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping(value = "/signup", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public ResponseEntity<?> signupBusinessMember(@ModelAttribute @Valid RequestSignupBusinessMemberDto request) {
-        businessMemberService.saveBusinessMember(BusinessMemberDto.fromRequest(request));
+    public ResponseEntity<?> signupConsumer(@ModelAttribute @Valid RequestSignupConsumerDto request) {
+        consumerService.saveConsumer(ConsumerDto.fromRequest(request));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Operation(security = {@SecurityRequirement(name = "Authorization")})
     @GetMapping(value = "/refreshToken")
     public ResponseEntity<?> reissueToken(@RequestHeader("Authorization") String refreshToken, @AuthenticationPrincipal MemberPrinciple principle) {
-        String token = businessMemberService.reissueToken(refreshToken, principle.toBusinessDto());
+        String token = consumerService.reissueToken(refreshToken, principle.toConsumerDto());
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }
