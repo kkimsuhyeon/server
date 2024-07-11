@@ -2,7 +2,6 @@ package com.project.mybnb.businessMember.service;
 
 import com.project.mybnb.businessMember.domain.BusinessMember;
 import com.project.mybnb.businessMember.dto.BusinessMemberDto;
-import com.project.mybnb.businessMember.dto.BusinessMemberWithArticleDto;
 import com.project.mybnb.businessMember.exception.BusinessMemberException;
 import com.project.mybnb.businessMember.repository.BusinessMemberRepository;
 import com.project.mybnb.security.TokenProvider;

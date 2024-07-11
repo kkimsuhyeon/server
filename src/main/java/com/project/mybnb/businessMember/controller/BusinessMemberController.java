@@ -1,7 +1,6 @@
 package com.project.mybnb.businessMember.controller;
 
 import com.project.mybnb.businessMember.dto.BusinessMemberDto;
-import com.project.mybnb.businessMember.dto.BusinessMemberWithArticleDto;
 import com.project.mybnb.businessMember.dto.request.RequestUpdateBusinessMemberDto;
 import com.project.mybnb.businessMember.service.BusinessMemberService;
 import com.project.mybnb.security.MemberPrinciple;
