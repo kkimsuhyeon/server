@@ -37,7 +37,6 @@ public class BusinessMemberDto {
 
     public BusinessMember toEntity() {
         return BusinessMember.builder()
-                .id(id)
                 .email(email)
                 .password(password)
                 .name(name)
