@@ -20,7 +20,7 @@ public class BusinessMemberRepository {
     }
 
     public Optional<BusinessMember> findByEmail(String email) {
-        String query = "SELECT bm FROM Consumer AS bm" +
+        String query = "SELECT bm FROM BusinessMember AS bm" +
                 " WHERE bm.email = :email";
 
         List<BusinessMember> members = entityManager.createQuery(query, BusinessMember.class)

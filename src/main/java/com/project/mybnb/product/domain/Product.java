@@ -1,44 +1,37 @@
 package com.project.mybnb.product.domain;
 
-import com.project.mybnb.businessMember.domain.BusinessMember;
 import jakarta.persistence.*;
-import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@EntityListeners(AuditingEntityListener.class)
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long product_id;
+    @Column(name = "product_id")
+    private long id;
 
-    private String title;
+    private String titie;
 
     private String content;
 
     private String category;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    @Column(nullable = true, name = "created_at")
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
-    @Column(nullable = true, name = "updated_at")
+    @Column(nullable = true)
     private LocalDateTime updatedAt;
 
-    private String location;
-
-    private int price;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "business_member_id")
-    private BusinessMember businessMember;
 }
