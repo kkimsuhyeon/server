@@ -23,6 +23,10 @@ public record MemberPrinciple(
         return MemberPrinciple.of(dto.getId(), dto.getEmail(), dto.getPassword(), dto.getName(), authorities);
     }
 
+    public static MemberPrinciple fromConsumerDto(ConsumerDto dto, Collection<? extends GrantedAuthority> authorities) {
+        return MemberPrinciple.of(dto.getId(), dto.getEmail(), dto.getPassword(), dto.getName(), authorities);
+    }
+
     public BusinessMemberDto toBusinessDto() {
         return new BusinessMemberDto.Builder(email, password).name(name).id(id).build();
     }

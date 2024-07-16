@@ -37,14 +37,18 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth -> auth
+        return http
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/business/signin").permitAll()
                         .requestMatchers("/api/business/signup").permitAll()
                         .requestMatchers("/api/business/**").hasAuthority("BUSINESS")
+                        .requestMatchers("/api/product/**").hasAnyAuthority("BUSINESS", "CONSUMER")
                         .anyRequest().permitAll())
                 .addFilterBefore(tokenVerificationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .csrf(AbstractHttpConfigurer::disable).build();
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .build();
     }
 
     // 해시 함수를 이용하여 비밀번호를 암호화해서 저장

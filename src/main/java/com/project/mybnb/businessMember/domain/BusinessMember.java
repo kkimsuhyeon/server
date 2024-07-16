@@ -1,5 +1,6 @@
 package com.project.mybnb.businessMember.domain;
 
+import com.project.mybnb.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,4 +34,7 @@ public class BusinessMember extends MemberAuditingFields {
 
     @Setter
     private String refreshToken;
+
+    @OneToMany(mappedBy = "businessMember", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
 }

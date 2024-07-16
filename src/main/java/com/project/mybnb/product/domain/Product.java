@@ -1,5 +1,6 @@
 package com.project.mybnb.product.domain;
 
+import com.project.mybnb.businessMember.domain.BusinessMember;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -33,5 +34,9 @@ public class Product {
     @LastModifiedDate
     @Column(nullable = true)
     private LocalDateTime updatedAt;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "business_member_id")
+    private BusinessMember businessMember;
 
 }

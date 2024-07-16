@@ -30,6 +30,12 @@ public class BusinessMemberRepository {
         return members.stream().findFirst();
     }
 
+    public void getBusinessMemberWithProduct(Long id) {
+        String query = "SELECT bm FROM BusinessMember AS bm";
+        entityManager.createQuery(query, BusinessMember.class);
+    }
+
+
     public BusinessMember save(BusinessMember member) {
         entityManager.persist(member);
         return member;
